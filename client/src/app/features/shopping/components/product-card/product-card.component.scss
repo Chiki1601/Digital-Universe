@@ -1,0 +1,98 @@
+@use '../../../../platform-engine/styles/accent-gradients' as accents;
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.9rem;
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: var(--card-backdrop);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &__art {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: calc(var(--border-radius) - 4px);
+    margin-bottom: 0.3rem;
+    overflow: hidden;
+
+    @include accents.accent-classes;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0.55rem;
+    left: 0.55rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: color-mix(in srgb, black 45%, transparent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  &__wishlist {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    border: none;
+    background: color-mix(in srgb, black 35%, transparent);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: color-mix(in srgb, black 55%, transparent);
+    }
+
+    &.is-active {
+      background: #e0245e;
+    }
+  }
+
+  &__name {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__add-btn {
+    margin-top: 0.4rem;
+    padding: 0.45rem;
+    border-radius: 999px;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover:not(:disabled) {
+      opacity: 0.85;
+    }
+
+    &:disabled {
+      background: color-mix(in srgb, var(--muted-text-color) 30%, transparent);
+      cursor: not-allowed;
+    }
+  }
+}

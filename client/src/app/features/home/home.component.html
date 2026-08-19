@@ -1,0 +1,222 @@
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <p class="hero__eyebrow">One engine. Seven digital universes.</p>
+  <h1 class="hero__title">
+    Digital <span class="hero__title-accent">Universe</span>
+  </h1>
+  <p class="hero__subtitle">
+    A single configuration-driven Angular + ASP.NET Core platform engine that powers 17 original,
+    fictional digital experiences &mdash; streaming, music, social, shopping, news, creator, and
+    professional networking &mdash; without duplicating a single line of UI logic.
+  </p>
+  <div class="hero__actions">
+    <a routerLink="/platforms" class="btn btn--primary">Explore Platforms</a>
+    <a href="#architecture" class="btn btn--ghost">See the Architecture</a>
+  </div>
+</section>
+
+<section class="intro">
+  <h2 class="section-title">Not a landing page collection. A platform engine.</h2>
+  <p class="section-lead">
+    Every experience below is rendered by the same Angular shell reading a different JSON
+    configuration. Change the config, and the same reusable components repaint themselves with a
+    new theme, layout, and section list &mdash; that's the entire idea behind Digital Universe.
+  </p>
+</section>
+
+<section class="categories">
+  <h2 class="section-title">Platform Categories</h2>
+  <div class="categories__grid">
+    @for (category of categories; track category.id) {
+      <a class="category-card" [routerLink]="['/platforms', category.id]">
+        <span class="category-card__icon" aria-hidden="true">{{ category.icon }}</span>
+        <h3 class="category-card__label">{{ category.label }}</h3>
+        <p class="category-card__description">{{ category.description }}</p>
+        <p class="category-card__examples">{{ category.examples }}</p>
+      </a>
+    }
+  </div>
+</section>
+
+<section class="featured">
+  <h2 class="section-title">Featured Experiences</h2>
+  <p class="section-lead">Live data pulled from the ASP.NET Core API &mdash; no mock JSON files.</p>
+
+  @if (featured().loading) {
+    <div class="featured__grid">
+      <app-skeleton-loader height="9rem" />
+      <app-skeleton-loader height="9rem" />
+      <app-skeleton-loader height="9rem" />
+    </div>
+  } @else if (featured().error) {
+    <app-error-state
+      title="Couldn't load featured platforms"
+      [message]="featured().error!"
+      (retry)="loadFeatured()"
+    />
+  } @else if (featured().data && featured().data!.length > 0) {
+    <div class="featured__grid">
+      @for (platform of featured().data; track platform.id) {
+        <a class="platform-card" [routerLink]="['/platforms', platform.category.toLowerCase(), platform.id]">
+          <span class="platform-card__category">{{ platform.category }}</span>
+          <h3 class="platform-card__name">{{ platform.name }}</h3>
+          <p class="platform-card__tagline">{{ platform.tagline }}</p>
+        </a>
+      }
+    </div>
+  } @else {
+    <app-empty-state title="No platforms yet" message="Platform data will appear here once seeded." />
+  }
+</section>
+
+<section class="explorer">
+  <div class="explorer__card">
+    <h2 class="section-title">Interactive Platform Explorer</h2>
+    <p class="section-lead">
+      Browse all 17 fictional platforms grouped by category, each rendered live from its own
+      configuration and theme.
+    </p>
+    <a routerLink="/platforms" class="btn btn--primary">Open the Explorer</a>
+  </div>
+</section>
+
+<section class="architecture" id="architecture">
+  <h2 class="section-title">Architecture Overview</h2>
+  <p class="section-lead">Configuration flows through five stages to become a rendered experience.</p>
+  <ol class="architecture__flow">
+    @for (item of architecture; track item.step; let last = $last) {
+      <li class="architecture__step">
+        <div class="architecture__step-body">
+          <h3>{{ item.step }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+        @if (!last) {
+          <span class="architecture__arrow" aria-hidden="true">↓</span>
+        }
+      </li>
+    }
+  </ol>
+</section>
+
+<section class="theme-gallery">
+  <h2 class="section-title">Theme Engine</h2>
+  <p class="section-lead">
+    Every platform pushes its own theme &mdash; a handful of CSS custom properties &mdash; onto the
+    same components. Click a swatch to repaint this entire page live; click it again (or Reset) to
+    return to your light/dark/system preference.
+  </p>
+
+  @if (themes().loading) {
+    <div class="theme-gallery__grid">
+      <app-skeleton-loader height="7rem" />
+      <app-skeleton-loader height="7rem" />
+      <app-skeleton-loader height="7rem" />
+    </div>
+  } @else if (themes().error) {
+    <app-error-state title="Couldn't load themes" [message]="themes().error!" (retry)="loadThemes()" />
+  } @else if (themes().data && themes().data!.length > 0) {
+    <div class="theme-gallery__grid">
+      @for (theme of themes().data; track theme.id) {
+        <button
+          type="button"
+          class="theme-swatch"
+          [class.is-active]="themeService.activePlatformTheme()?.id === theme.id"
+          (click)="previewTheme(theme)"
+        >
+          <span class="theme-swatch__colors">
+            <span class="theme-swatch__dot" [style.background]="theme.primaryColor"></span>
+            <span class="theme-swatch__dot" [style.background]="theme.secondaryColor"></span>
+            <span class="theme-swatch__dot" [style.background]="theme.surfaceColor"></span>
+          </span>
+          <span class="theme-swatch__name">{{ theme.name }}</span>
+          <span class="theme-swatch__meta">{{ theme.cardStyle }} &middot; {{ theme.borderRadius }}</span>
+        </button>
+      }
+    </div>
+
+    @if (themeService.activePlatformTheme()) {
+      <button type="button" class="theme-gallery__reset" (click)="themeService.setPlatformTheme(null)">
+        Reset to {{ themeService.colorScheme() }} theme
+      </button>
+    }
+  } @else {
+    <app-empty-state title="No themes yet" message="Theme data will appear here once seeded." />
+  }
+</section>
+
+<section class="stack">
+  <h2 class="section-title">Technology Stack</h2>
+  <div class="stack__group">
+    <h3>Frontend</h3>
+    <div class="stack__badges">
+      @for (tech of techStack; track tech.label) {
+        @if (tech.group === 'Frontend') {
+          <span class="badge">{{ tech.label }}</span>
+        }
+      }
+    </div>
+  </div>
+  <div class="stack__group">
+    <h3>Backend</h3>
+    <div class="stack__badges">
+      @for (tech of techStack; track tech.label) {
+        @if (tech.group === 'Backend') {
+          <span class="badge">{{ tech.label }}</span>
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<section class="showcase">
+  <h2 class="section-title">Reusable Component Showcase</h2>
+  <p class="section-lead">A shared component library powers every platform &mdash; themed, not rebuilt.</p>
+  <div class="showcase__grid">
+    @for (item of componentShowcase; track item.name) {
+      <div class="showcase-card">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="highlights">
+  <h2 class="section-title">Feature Highlights</h2>
+  <div class="highlights__grid">
+    <div class="highlight"><span aria-hidden="true">⚡</span><p>Lazy-loaded feature routes for every platform category</p></div>
+    <div class="highlight"><span aria-hidden="true">🎨</span><p>CSS custom property theme engine with light / dark / system modes</p></div>
+    <div class="highlight"><span aria-hidden="true">🔐</span><p>JWT authentication with role-based access control</p></div>
+    <div class="highlight"><span aria-hidden="true">📡</span><p>Real-time SignalR live room for cross-platform presence</p></div>
+    <div class="highlight"><span aria-hidden="true">🧩</span><p>Signals-first state management, zero extra state libraries</p></div>
+    <div class="highlight"><span aria-hidden="true">♿</span><p>Semantic HTML and ARIA attributes throughout</p></div>
+  </div>
+</section>
+
+<section class="security">
+  <h2 class="section-title">Security</h2>
+  <p class="section-lead">
+    Demonstration-grade JWT authentication with claims-based role authorization (Admin, Editor,
+    User). Tokens are issued by the in-memory <code>AuthController</code> and validated on every
+    protected request &mdash; this is <strong>not</strong> production authentication and should
+    never be treated as such.
+  </p>
+</section>
+
+<section class="api-architecture">
+  <h2 class="section-title">API Architecture</h2>
+  <p class="section-lead">
+    Clean ASP.NET Core layering: Controllers depend on service interfaces, services depend on
+    repository interfaces, and repositories hold in-memory collections. No Entity Framework, no
+    database, no migrations &mdash; state resets whenever the API restarts.
+  </p>
+  <div class="api-architecture__layers">
+    <span>Controllers</span>
+    <span aria-hidden="true">→</span>
+    <span>Services</span>
+    <span aria-hidden="true">→</span>
+    <span>Repositories</span>
+    <span aria-hidden="true">→</span>
+    <span>In-Memory Collections</span>
+  </div>
+</section>

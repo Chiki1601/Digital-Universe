@@ -1,0 +1,31 @@
+<a class="product-card" [routerLink]="['product', product().id]">
+  <div class="product-card__art" [class]="'accent-' + product().accentIndex">
+    @if (!product().inStock) {
+      <span class="product-card__badge">Out of Stock</span>
+    }
+
+    <button
+      type="button"
+      class="product-card__wishlist"
+      [class.is-active]="inWishlist()"
+      (click)="onWishlistClick($event)"
+      [attr.aria-label]="inWishlist() ? 'Remove from wishlist' : 'Add to wishlist'"
+      [attr.aria-pressed]="inWishlist()"
+    >
+      {{ inWishlist() ? '♥' : '♡' }}
+    </button>
+  </div>
+
+  <h3 class="product-card__name">{{ product().name }}</h3>
+  <app-rating [value]="product().rating" />
+  <app-price [amount]="product().price" [originalAmount]="product().originalPrice" />
+
+  <button
+    type="button"
+    class="product-card__add-btn"
+    [disabled]="!product().inStock"
+    (click)="onAddToCartClick($event)"
+  >
+    {{ product().inStock ? 'Add to Cart' : 'Unavailable' }}
+  </button>
+</a>

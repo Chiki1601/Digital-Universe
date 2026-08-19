@@ -1,0 +1,87 @@
+@if (orderPlaced()) {
+  <div class="checkout checkout--confirmation">
+    <span class="checkout__confirm-icon" aria-hidden="true">✅</span>
+    <h1>Order placed!</h1>
+    <p>
+      Thanks for your order &mdash; {{ placedItemCount() }} item(s) totaling
+      <app-price [amount]="placedOrderTotals()!.total" />. This is a demo checkout; no real payment
+      was processed and no order record was saved.
+    </p>
+    <a routerLink="..">Continue Shopping</a>
+  </div>
+} @else if (lines().length === 0) {
+  <div class="checkout checkout--empty">
+    <h1>Your cart is empty</h1>
+    <p>Add something to your cart before checking out.</p>
+    <a routerLink="..">Browse products</a>
+  </div>
+} @else {
+  <div class="checkout">
+    <a class="checkout__back" routerLink="../cart">&larr; Back to Cart</a>
+    <h1>Checkout</h1>
+
+    <div class="checkout__layout">
+      <form class="checkout__form" [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Shipping Details</h2>
+
+        <label>
+          Full Name
+          <input type="text" formControlName="fullName" autocomplete="name" />
+          @if (form.controls.fullName.invalid && form.controls.fullName.touched) {
+            <span class="checkout__error">Full name is required.</span>
+          }
+        </label>
+
+        <label>
+          Address
+          <input type="text" formControlName="addressLine" autocomplete="street-address" />
+          @if (form.controls.addressLine.invalid && form.controls.addressLine.touched) {
+            <span class="checkout__error">Address is required.</span>
+          }
+        </label>
+
+        <div class="checkout__form-row">
+          <label>
+            City
+            <input type="text" formControlName="city" autocomplete="address-level2" />
+            @if (form.controls.city.invalid && form.controls.city.touched) {
+              <span class="checkout__error">City is required.</span>
+            }
+          </label>
+
+          <label>
+            Postal Code
+            <input type="text" formControlName="postalCode" autocomplete="postal-code" />
+            @if (form.controls.postalCode.invalid && form.controls.postalCode.touched) {
+              <span class="checkout__error">Postal code is required.</span>
+            }
+          </label>
+        </div>
+
+        <button type="submit" class="checkout__submit">Place Order</button>
+      </form>
+
+      <aside class="checkout__summary">
+        <h2>Order Summary</h2>
+        @for (line of lines(); track line.product.id) {
+          <div class="checkout__summary-line">
+            <span>{{ line.product.name }} &times; {{ line.quantity }}</span>
+            <app-price [amount]="line.product.price * line.quantity" />
+          </div>
+        }
+        <div class="checkout__summary-row">
+          <span>Subtotal</span>
+          <app-price [amount]="totals().subtotal" />
+        </div>
+        <div class="checkout__summary-row">
+          <span>Estimated Tax</span>
+          <app-price [amount]="totals().estimatedTax" />
+        </div>
+        <div class="checkout__summary-row checkout__summary-row--total">
+          <span>Total</span>
+          <app-price [amount]="totals().total" />
+        </div>
+      </aside>
+    </div>
+  </div>
+}

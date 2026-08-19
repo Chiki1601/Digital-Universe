@@ -1,0 +1,31 @@
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  &__pill {
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--muted-text-color) 25%, transparent);
+    background: transparent;
+    color: var(--muted-text-color);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--primary-color);
+      color: var(--text-color);
+    }
+
+    &.is-active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: #fff;
+    }
+  }
+}

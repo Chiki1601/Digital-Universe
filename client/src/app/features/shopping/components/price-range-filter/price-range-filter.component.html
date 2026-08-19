@@ -1,0 +1,20 @@
+<div class="price-range" role="group" aria-label="Price range">
+  <span class="price-range__label">${{ value().min }} &ndash; ${{ value().max }}</span>
+
+  <input
+    type="range"
+    [min]="bounds().min"
+    [max]="bounds().max"
+    [value]="value().min"
+    (input)="onMinChange($any($event.target).value)"
+    aria-label="Minimum price"
+  />
+  <input
+    type="range"
+    [min]="bounds().min"
+    [max]="bounds().max"
+    [value]="value().max"
+    (input)="onMaxChange($any($event.target).value)"
+    aria-label="Maximum price"
+  />
+</div>

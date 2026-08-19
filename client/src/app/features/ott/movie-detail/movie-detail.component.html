@@ -1,0 +1,52 @@
+@if (platform().loading || content().loading) {
+  <app-loading-state message="Loading title..." />
+} @else if (platform().error || content().error) {
+  <app-error-state title="Couldn't load this title" [message]="(platform().error || content().error)!" (retry)="load()" />
+} @else if (content().data && platform().data) {
+  <div class="movie-detail">
+    <a class="movie-detail__back" [routerLink]="['/platforms', platform().data!.category.toLowerCase(), platformId()]">
+      &larr; Back to {{ platform().data!.name }}
+    </a>
+
+    <div class="movie-detail__layout">
+      <app-video-player
+        [title]="content().data!.title"
+        [accentIndex]="content().data!.accentIndex"
+        [initialProgress]="continueWatchingService.getProgress(contentId()) ?? 0"
+        (progressChange)="onProgressChange($event)"
+      />
+
+      <div class="movie-detail__info">
+        <span class="movie-detail__type">{{ content().data!.type }}</span>
+        <h1 class="movie-detail__title">{{ content().data!.title }}</h1>
+
+        <div class="movie-detail__meta">
+          <app-rating [value]="content().data!.rating" />
+          <span>{{ content().data!.releaseYear }}</span>
+          <span>{{ content().data!.runtime }}</span>
+        </div>
+
+        <div class="movie-detail__genres">
+          @for (genre of content().data!.genres; track genre) {
+            <span class="movie-detail__genre-chip">{{ genre }}</span>
+          }
+        </div>
+
+        <p class="movie-detail__synopsis">{{ content().data!.synopsis }}</p>
+
+        <button type="button" class="movie-detail__watchlist-btn" (click)="toggleWatchlist()">
+          {{ watchlistService.has(contentId()) ? '✓ In Watchlist' : '+ Add to Watchlist' }}
+        </button>
+      </div>
+    </div>
+
+    <app-movie-row
+      title="More Like This"
+      [items]="moreLikeThis()"
+      [watchlistIds]="watchlistService.watchlist()"
+      (watchlistToggle)="watchlistService.toggle($event)"
+    />
+  </div>
+} @else {
+  <app-empty-state title="Title not found" message="This title doesn't exist." />
+}

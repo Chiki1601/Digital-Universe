@@ -1,0 +1,17 @@
+<section class="carousel" [attr.aria-label]="title() || 'Content carousel'">
+  @if (title()) {
+    <div class="carousel__header">
+      <h2 class="carousel__title">{{ title() }}</h2>
+      <div class="carousel__controls">
+        <button type="button" aria-label="Scroll left" (click)="scrollBy(-1)">&larr;</button>
+        <button type="button" aria-label="Scroll right" (click)="scrollBy(1)">&rarr;</button>
+      </div>
+    </div>
+  }
+
+  <div class="carousel__track" #track>
+    @for (item of items(); track item.id) {
+      <app-media-card [item]="item" [compact]="compact()" />
+    }
+  </div>
+</section>

@@ -1,0 +1,52 @@
+<div class="cart">
+  <a class="cart__back" routerLink="..">&larr; Continue Shopping</a>
+  <h1 class="cart__title">Your Cart</h1>
+
+  @if (lines().length === 0) {
+    <app-empty-state icon="🛒" title="Your cart is empty" message="Add something from the shop to see it here.">
+    </app-empty-state>
+    <div class="cart__empty-cta">
+      <a routerLink="..">Browse products</a>
+    </div>
+  } @else {
+    <div class="cart__layout">
+      <div class="cart__lines">
+        @for (line of lines(); track line.product.id) {
+          <div class="cart__line">
+            <div class="cart__line-art" [class]="'accent-' + line.product.accentIndex"></div>
+            <div class="cart__line-info">
+              <h3>{{ line.product.name }}</h3>
+              <app-price [amount]="line.product.price" [originalAmount]="line.product.originalPrice" />
+            </div>
+            <app-quantity-selector
+              [value]="line.quantity"
+              [max]="99"
+              (valueChange)="updateQuantity(line.product.id, $event)"
+            />
+            <app-price class="cart__line-subtotal" [amount]="line.product.price * line.quantity" />
+            <button type="button" class="cart__remove" (click)="removeItem(line.product.id)" aria-label="Remove item">
+              &times;
+            </button>
+          </div>
+        }
+      </div>
+
+      <aside class="cart__summary">
+        <h2>Order Summary</h2>
+        <div class="cart__summary-row">
+          <span>Subtotal</span>
+          <app-price [amount]="totals().subtotal" />
+        </div>
+        <div class="cart__summary-row">
+          <span>Estimated Tax</span>
+          <app-price [amount]="totals().estimatedTax" />
+        </div>
+        <div class="cart__summary-row cart__summary-row--total">
+          <span>Total</span>
+          <app-price [amount]="totals().total" />
+        </div>
+        <a class="cart__checkout-btn" routerLink="../checkout">Proceed to Checkout</a>
+      </aside>
+    </div>
+  }
+</div>

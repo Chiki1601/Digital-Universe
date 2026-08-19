@@ -1,0 +1,39 @@
+.app-footer {
+  padding: 2.5rem 2rem 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--muted-text-color) 18%, transparent);
+  color: var(--muted-text-color);
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__brand {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.25rem;
+
+    a {
+      color: var(--muted-text-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  &__note {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+}

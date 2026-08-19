@@ -1,0 +1,17 @@
+@for (section of platform().sections; track section.order) {
+  @switch (section.type) {
+    @case ('hero') {
+      <app-hero-banner
+        [title]="platform().name"
+        [tagline]="platform().tagline"
+        [description]="platform().description"
+      />
+    }
+    @case ('carousel') {
+      <app-content-carousel [title]="section.title ?? ''" [items]="itemsFor(section)" />
+    }
+    @case ('stories') {
+      <app-content-carousel [title]="section.title ?? 'Stories'" [items]="itemsFor(section)" [compact]="true" />
+    }
+  }
+}

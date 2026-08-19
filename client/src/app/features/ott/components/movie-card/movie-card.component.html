@@ -1,0 +1,28 @@
+<a class="movie-card" [routerLink]="['title', content().id]">
+  <div class="movie-card__art" [class]="'accent-' + content().accentIndex">
+    <span class="movie-card__type">{{ content().type }}</span>
+
+    <button
+      type="button"
+      class="movie-card__watchlist"
+      [class.is-active]="inWatchlist()"
+      (click)="onWatchlistClick($event)"
+      [attr.aria-label]="inWatchlist() ? 'Remove from watchlist' : 'Add to watchlist'"
+      [attr.aria-pressed]="inWatchlist()"
+    >
+      {{ inWatchlist() ? '✓' : '+' }}
+    </button>
+
+    @if (progress(); as pct) {
+      <div class="movie-card__progress" role="progressbar" [attr.aria-valuenow]="pct" aria-valuemin="0" aria-valuemax="100">
+        <span class="movie-card__progress-fill" [style.width.%]="pct"></span>
+      </div>
+    }
+  </div>
+
+  <h3 class="movie-card__title">{{ content().title }}</h3>
+  <div class="movie-card__meta">
+    <app-rating [value]="content().rating" />
+    <span class="movie-card__genre">{{ content().genres[0] }}</span>
+  </div>
+</a>

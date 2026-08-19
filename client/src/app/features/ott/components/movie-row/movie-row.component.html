@@ -1,0 +1,31 @@
+@if (items().length > 0) {
+  <section class="movie-row" [attr.aria-label]="title() || 'Movie row'">
+    @if (title()) {
+      <div class="movie-row__header">
+        <h2 class="movie-row__title">{{ title() }}</h2>
+        <div class="movie-row__controls">
+          <button type="button" aria-label="Scroll left" (click)="scrollBy(-1)">&larr;</button>
+          <button type="button" aria-label="Scroll right" (click)="scrollBy(1)">&rarr;</button>
+        </div>
+      </div>
+    }
+
+    <div class="movie-row__track" #track>
+      @for (item of items(); track item.id) {
+        <app-movie-card
+          [content]="item"
+          [progress]="progressById().get(item.id)"
+          [inWatchlist]="watchlistIds().has(item.id)"
+          (watchlistToggle)="watchlistToggle.emit(item.id)"
+        />
+      }
+    </div>
+  </section>
+} @else if (emptyMessage()) {
+  <section class="movie-row movie-row--empty" [attr.aria-label]="title() || 'Movie row'">
+    @if (title()) {
+      <h2 class="movie-row__title">{{ title() }}</h2>
+    }
+    <p class="movie-row__empty-message">{{ emptyMessage() }}</p>
+  </section>
+}

@@ -1,0 +1,29 @@
+<section class="platform-list">
+  <header class="platform-list__header">
+    <h1>{{ category() ? (category() | titlecase) + ' Platforms' : 'All Platforms' }}</h1>
+    <p>17 original, fictional digital experiences powered by one configuration-driven engine.</p>
+  </header>
+
+  @if (platforms().loading) {
+    <div class="platform-list__grid">
+      <app-skeleton-loader height="8rem" />
+      <app-skeleton-loader height="8rem" />
+      <app-skeleton-loader height="8rem" />
+      <app-skeleton-loader height="8rem" />
+    </div>
+  } @else if (platforms().error) {
+    <app-error-state title="Couldn't load platforms" [message]="platforms().error!" (retry)="load()" />
+  } @else if (filtered().length > 0) {
+    <div class="platform-list__grid">
+      @for (platform of filtered(); track platform.id) {
+        <a class="platform-tile" [routerLink]="[platform.category.toLowerCase(), platform.id]">
+          <span class="platform-tile__category">{{ platform.category }}</span>
+          <h2 class="platform-tile__name">{{ platform.name }}</h2>
+          <p class="platform-tile__tagline">{{ platform.tagline }}</p>
+        </a>
+      }
+    </div>
+  } @else {
+    <app-empty-state title="No platforms found" message="Try a different category." />
+  }
+</section>

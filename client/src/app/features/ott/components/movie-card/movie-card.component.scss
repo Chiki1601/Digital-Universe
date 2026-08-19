@@ -1,0 +1,99 @@
+@use '../../../../platform-engine/styles/accent-gradients' as accents;
+
+.movie-card {
+  display: block;
+  flex: 0 0 auto;
+  width: 12rem;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+
+  &__art {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.6rem;
+    box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.5);
+    overflow: hidden;
+
+    @include accents.accent-classes;
+  }
+
+  &__type {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: color-mix(in srgb, white 90%, transparent);
+    background: color-mix(in srgb, black 35%, transparent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  &__watchlist {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    border: none;
+    background: color-mix(in srgb, black 40%, transparent);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: color-mix(in srgb, black 60%, transparent);
+    }
+
+    &.is-active {
+      background: var(--primary-color);
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.3rem;
+    background: color-mix(in srgb, black 45%, transparent);
+  }
+
+  &__progress-fill {
+    display: block;
+    height: 100%;
+    background: var(--primary-color);
+  }
+
+  &__title {
+    margin: 0 0 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  &__genre {
+    font-size: 0.75rem;
+    color: var(--muted-text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

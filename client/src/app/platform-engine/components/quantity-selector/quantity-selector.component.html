@@ -1,0 +1,9 @@
+<div class="quantity-selector" role="group" aria-label="Quantity">
+  <button type="button" (click)="decrement()" [disabled]="value() <= min()" aria-label="Decrease quantity">
+    &minus;
+  </button>
+  <span class="quantity-selector__value" aria-live="polite">{{ value() }}</span>
+  <button type="button" (click)="increment()" [disabled]="value() >= max()" aria-label="Increase quantity">
+    &plus;
+  </button>
+</div>

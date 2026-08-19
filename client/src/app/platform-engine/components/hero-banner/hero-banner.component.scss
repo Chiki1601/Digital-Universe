@@ -1,0 +1,46 @@
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 4.5rem 2rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2.5rem;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--primary-color) 22%, var(--surface-color)),
+    color-mix(in srgb, var(--secondary-color) 16%, var(--surface-color))
+  );
+  text-align: center;
+
+  &__glow {
+    position: absolute;
+    inset: -30% -10% auto -10%;
+    height: 20rem;
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--primary-color) 40%, transparent) 0%, transparent 70%);
+    filter: blur(6px);
+  }
+
+  &__tagline {
+    position: relative;
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  &__title {
+    position: relative;
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+    letter-spacing: -0.02em;
+  }
+
+  &__description {
+    position: relative;
+    max-width: 55ch;
+    margin: 0 auto;
+    color: var(--muted-text-color);
+    line-height: 1.6;
+  }
+}

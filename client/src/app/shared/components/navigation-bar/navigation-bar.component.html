@@ -1,0 +1,26 @@
+<header class="nav-bar">
+  <a class="nav-bar__brand" routerLink="/">
+    <span class="nav-bar__brand-mark" aria-hidden="true">◆</span>
+    Digital Universe
+  </a>
+
+  <nav class="nav-bar__links" aria-label="Primary">
+    <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/platforms" routerLinkActive="is-active">Platforms</a>
+    <a routerLink="/admin" routerLinkActive="is-active">Admin</a>
+  </nav>
+
+  <div class="nav-bar__actions" role="group" aria-label="Color scheme">
+    @for (scheme of schemes; track scheme) {
+      <button
+        type="button"
+        class="nav-bar__scheme-btn"
+        [class.is-active]="themeService.colorScheme() === scheme"
+        [attr.aria-pressed]="themeService.colorScheme() === scheme"
+        (click)="setScheme(scheme)"
+      >
+        {{ scheme }}
+      </button>
+    }
+  </div>
+</header>

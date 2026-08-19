@@ -1,0 +1,51 @@
+:root {
+  --primary-color: #6d28d9;
+  --secondary-color: #0ea5e9;
+  --background-color: #f8f8fc;
+  --surface-color: #ffffff;
+  --text-color: #14141f;
+  --muted-text-color: #666a80;
+  --border-radius: 14px;
+  --font-family:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--background-color);
+  color: var(--text-color);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+a {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  font-family: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary-color) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}

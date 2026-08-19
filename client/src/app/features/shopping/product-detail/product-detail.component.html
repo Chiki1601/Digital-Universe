@@ -1,0 +1,70 @@
+@if (platform().loading || product().loading) {
+  <app-loading-state message="Loading product..." />
+} @else if (platform().error || product().error) {
+  <app-error-state title="Couldn't load this product" [message]="(platform().error || product().error)!" (retry)="load()" />
+} @else if (product().data && platform().data) {
+  <div class="product-detail">
+    <a class="product-detail__back" [routerLink]="['/platforms', platform().data!.category.toLowerCase(), platformId()]">
+      &larr; Back to {{ platform().data!.name }}
+    </a>
+
+    <div class="product-detail__layout">
+      <div class="product-detail__gallery">
+        <div class="product-detail__gallery-main" [class]="'accent-' + selectedThumbnail()">
+          @if (!product().data!.inStock) {
+            <span class="product-detail__badge">Out of Stock</span>
+          }
+        </div>
+        <div class="product-detail__thumbnails">
+          @for (thumb of thumbnails; track thumb) {
+            <button
+              type="button"
+              class="product-detail__thumbnail"
+              [class]="'accent-' + thumb"
+              [class.is-active]="selectedThumbnail() === thumb"
+              (click)="selectedThumbnail.set(thumb)"
+              [attr.aria-label]="'View image ' + (thumb + 1)"
+            ></button>
+          }
+        </div>
+      </div>
+
+      <div class="product-detail__info">
+        <h1 class="product-detail__title">{{ product().data!.name }}</h1>
+
+        <div class="product-detail__meta">
+          <app-rating [value]="product().data!.rating" />
+          <span>({{ product().data!.reviewCount }} reviews)</span>
+        </div>
+
+        <app-price [amount]="product().data!.price" [originalAmount]="product().data!.originalPrice" />
+
+        <p class="product-detail__description">{{ product().data!.description }}</p>
+
+        <div class="product-detail__actions">
+          <app-quantity-selector [value]="quantity()" [max]="99" (valueChange)="quantity.set($event)" />
+          <button type="button" class="product-detail__add-btn" [disabled]="!product().data!.inStock" (click)="addToCart()">
+            {{ product().data!.inStock ? 'Add to Cart' : 'Unavailable' }}
+          </button>
+          <button type="button" class="product-detail__wishlist-btn" (click)="toggleWishlist()">
+            {{ wishlistService.has(productId()) ? '♥ In Wishlist' : '♡ Add to Wishlist' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    @if (related().length > 0) {
+      <section class="product-detail__related">
+        <h2>You Might Also Like</h2>
+        <app-product-grid
+          [products]="related()"
+          [wishlistIds]="wishlistService.wishlist()"
+          (wishlistToggle)="wishlistService.toggle($event)"
+          (addToCart)="addRelatedToCart($event)"
+        />
+      </section>
+    }
+  </div>
+} @else {
+  <app-empty-state title="Product not found" message="This product doesn't exist." />
+}

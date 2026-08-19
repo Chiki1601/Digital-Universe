@@ -1,0 +1,36 @@
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--muted-text-color) 25%, transparent);
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+
+  button {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    border: none;
+    background: color-mix(in srgb, var(--muted-text-color) 12%, transparent);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  &__value {
+    min-width: 1.5ch;
+    text-align: center;
+    font-weight: 600;
+  }
+}

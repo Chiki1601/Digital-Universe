@@ -1,0 +1,26 @@
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+
+  &__amount {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  &__original {
+    font-size: 0.85em;
+    color: var(--muted-text-color);
+    text-decoration: line-through;
+  }
+
+  &__discount {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--primary-color);
+    background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+  }
+}

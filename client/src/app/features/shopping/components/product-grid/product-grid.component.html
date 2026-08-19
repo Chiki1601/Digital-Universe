@@ -1,0 +1,14 @@
+@if (products().length > 0) {
+  <div class="product-grid">
+    @for (product of products(); track product.id) {
+      <app-product-card
+        [product]="product"
+        [inWishlist]="wishlistIds().has(product.id)"
+        (wishlistToggle)="wishlistToggle.emit(product.id)"
+        (addToCart)="addToCart.emit(product.id)"
+      />
+    }
+  </div>
+} @else {
+  <app-empty-state icon="🛒" title="No products found" message="Try a different search, category, or price range." />
+}

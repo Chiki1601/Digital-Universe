@@ -1,0 +1,50 @@
+.platform-detail {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+
+  &__back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--muted-text-color);
+    text-decoration: none;
+    font-size: 0.88rem;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  &__search {
+    max-width: 24rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__search-hint {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+    color: var(--muted-text-color);
+  }
+
+  &__body {
+    display: block;
+
+    &--with-sidebar {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &__note {
+    margin-top: 2.5rem;
+    color: var(--muted-text-color);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+  }
+}

@@ -1,0 +1,7 @@
+<article class="media-card" [class.media-card--compact]="compact()">
+  <div class="media-card__art" [class]="'accent-' + item().accentIndex" aria-hidden="true">
+    <span class="media-card__initial">{{ item().title.charAt(0) }}</span>
+  </div>
+  <h3 class="media-card__title">{{ item().title }}</h3>
+  <app-rating [value]="item().rating" />
+</article>

@@ -1,0 +1,44 @@
+@use '../../styles/accent-gradients' as accents;
+
+.media-card {
+  flex: 0 0 auto;
+  width: 11rem;
+  scroll-snap-align: start;
+
+  &--compact {
+    width: 6.5rem;
+  }
+
+  &__art {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.5);
+
+    @include accents.accent-classes;
+  }
+
+  &--compact &__art {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+  }
+
+  &__initial {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: color-mix(in srgb, white 90%, transparent);
+  }
+
+  &__title {
+    margin: 0 0 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--muted-text-color) 20%, transparent);
+
+  &__icon {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    width: 100%;
+    font-family: inherit;
+
+    &::placeholder {
+      color: var(--muted-text-color);
+    }
+  }
+}

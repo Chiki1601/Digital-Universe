@@ -1,0 +1,13 @@
+<nav class="sidebar" [attr.aria-label]="title()">
+  <h2 class="sidebar__title">{{ title() }}</h2>
+  <ul class="sidebar__list">
+    @for (link of links(); track link.label) {
+      <li>
+        <button type="button" class="sidebar__link">
+          <span aria-hidden="true">{{ link.icon }}</span>
+          {{ link.label }}
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

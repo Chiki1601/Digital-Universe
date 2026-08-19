@@ -1,0 +1,7 @@
+<span class="price">
+  <span class="price__amount">{{ amount() | currency: currency() }}</span>
+  @if (hasDiscount()) {
+    <span class="price__original">{{ originalAmount() | currency: currency() }}</span>
+    <span class="price__discount">-{{ discountPercent() }}%</span>
+  }
+</span>

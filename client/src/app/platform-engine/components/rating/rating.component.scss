@@ -1,0 +1,13 @@
+.rating {
+  display: inline-flex;
+  gap: 0.1rem;
+
+  &__star {
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--muted-text-color) 40%, transparent);
+
+    &.is-filled {
+      color: var(--primary-color);
+    }
+  }
+}

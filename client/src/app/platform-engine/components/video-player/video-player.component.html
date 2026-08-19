@@ -1,0 +1,31 @@
+<div class="video-player">
+  <div class="video-player__screen" [class]="'accent-' + accentIndex()">
+    <button type="button" class="video-player__play-overlay" (click)="togglePlay()" [attr.aria-label]="isPlaying() ? 'Pause' : 'Play'">
+      {{ isPlaying() ? '⏸' : '▶' }}
+    </button>
+    <span class="video-player__mock-badge">Mock playback &mdash; no real video source</span>
+  </div>
+
+  <div class="video-player__controls">
+    <button type="button" class="video-player__control-btn" (click)="togglePlay()" [attr.aria-label]="isPlaying() ? 'Pause' : 'Play'">
+      {{ isPlaying() ? '⏸' : '▶' }}
+    </button>
+
+    <input
+      type="range"
+      class="video-player__seek"
+      min="0"
+      max="100"
+      step="1"
+      [value]="progress()"
+      (input)="onSeek($any($event.target).value)"
+      [attr.aria-label]="'Seek, ' + title()"
+      [attr.aria-valuenow]="progress()"
+    />
+
+    <span class="video-player__percent">{{ progress() | number: '1.0-0' }}%</span>
+
+    <span class="video-player__icon" aria-hidden="true">🔊</span>
+    <span class="video-player__icon" aria-hidden="true">⛶</span>
+  </div>
+</div>

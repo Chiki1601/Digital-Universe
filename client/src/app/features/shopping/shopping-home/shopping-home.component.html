@@ -1,0 +1,54 @@
+@if (platform().loading || products().loading) {
+  <app-loading-state message="Loading platform..." />
+} @else if (platform().error || products().error) {
+  <app-error-state title="Couldn't load this platform" [message]="(platform().error || products().error)!" (retry)="load()" />
+} @else if (platform().data) {
+  <div class="shopping-home">
+    <app-hero-banner
+      [title]="platform().data!.name"
+      [tagline]="platform().data!.tagline"
+      [description]="platform().data!.description"
+    />
+
+    <div class="shopping-home__toolbar">
+      @if (platform().data!.layout.search) {
+        <app-search placeholder="Search {{ platform().data!.name }}..." (queryChange)="searchQuery.set($event)" />
+      }
+
+      @if (priceBounds().max > priceBounds().min) {
+        <app-price-range-filter [bounds]="priceBounds()" [value]="priceRange()" (rangeChange)="priceRange.set($event)" />
+      }
+
+      <select class="shopping-home__sort" (change)="sortBy.set($any($event.target).value)" aria-label="Sort products">
+        <option value="relevance">Sort: Relevance</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating-desc">Rating</option>
+      </select>
+
+      <a class="shopping-home__cart-link" routerLink="cart">
+        🛒 Cart @if (cartCount() > 0) { <span class="shopping-home__cart-count">{{ cartCount() }}</span> }
+      </a>
+    </div>
+
+    @if (categoryOptions().length > 0) {
+      <app-filter-panel
+        label="All Categories"
+        [options]="categoryOptions()"
+        [selected]="selectedCategory()"
+        (selectionChange)="selectedCategory.set($event)"
+      />
+    }
+
+    <div class="shopping-home__grid">
+      <app-product-grid
+        [products]="filteredProducts()"
+        [wishlistIds]="wishlistService.wishlist()"
+        (wishlistToggle)="wishlistService.toggle($event)"
+        (addToCart)="onAddToCart($event)"
+      />
+    </div>
+  </div>
+} @else {
+  <app-empty-state title="Platform not found" message="This platform doesn't exist." />
+}

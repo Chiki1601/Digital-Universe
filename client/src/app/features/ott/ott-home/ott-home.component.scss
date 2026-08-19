@@ -1,0 +1,18 @@
+.ott-home {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    app-search {
+      max-width: 20rem;
+      flex: 1 1 16rem;
+    }
+  }
+}

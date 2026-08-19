@@ -1,0 +1,5 @@
+<span class="rating" [attr.aria-label]="value() + ' out of ' + max() + ' stars'">
+  @for (filled of stars(); track $index) {
+    <span class="rating__star" [class.is-filled]="filled" aria-hidden="true">★</span>
+  }
+</span>

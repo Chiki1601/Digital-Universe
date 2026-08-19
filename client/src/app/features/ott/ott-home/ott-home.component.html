@@ -1,0 +1,61 @@
+@if (platform().loading || content().loading) {
+  <app-loading-state message="Loading platform..." />
+} @else if (platform().error || content().error) {
+  <app-error-state title="Couldn't load this platform" [message]="(platform().error || content().error)!" (retry)="load()" />
+} @else if (platform().data) {
+  <div class="ott-home">
+    <app-hero-banner
+      [title]="platform().data!.name"
+      [tagline]="platform().data!.tagline"
+      [description]="platform().data!.description"
+    />
+
+    @if (platform().data!.layout.search) {
+      <div class="ott-home__toolbar">
+        <app-search placeholder="Search {{ platform().data!.name }}..." (queryChange)="searchQuery.set($event)" />
+        <app-filter-panel
+          label="All Genres"
+          [options]="genres()"
+          [selected]="selectedGenre()"
+          (selectionChange)="selectedGenre.set($event)"
+        />
+      </div>
+    }
+
+    <app-movie-row
+      title="Continue Watching"
+      [items]="continueWatchingItems()"
+      [progressById]="continueWatchingService.progress()"
+      [watchlistIds]="watchlistService.watchlist()"
+      (watchlistToggle)="toggleWatchlist($event)"
+    />
+
+    <app-movie-row
+      title="My Watchlist"
+      [items]="watchlistItems()"
+      emptyMessage="Tap + on any title to add it to your watchlist."
+      [watchlistIds]="watchlistService.watchlist()"
+      (watchlistToggle)="toggleWatchlist($event)"
+    />
+
+    @if (trending().length === 0 && popular().length === 0) {
+      <app-empty-state title="No titles match" message="Try a different search or genre." />
+    } @else {
+      <app-movie-row
+        title="Trending Now"
+        [items]="trending()"
+        [watchlistIds]="watchlistService.watchlist()"
+        (watchlistToggle)="toggleWatchlist($event)"
+      />
+
+      <app-movie-row
+        title="Popular"
+        [items]="popular()"
+        [watchlistIds]="watchlistService.watchlist()"
+        (watchlistToggle)="toggleWatchlist($event)"
+      />
+    }
+  </div>
+} @else {
+  <app-empty-state title="Platform not found" message="This platform doesn't exist." />
+}

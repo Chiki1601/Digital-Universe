@@ -1,0 +1,39 @@
+@if (configuration().loading) {
+  <app-loading-state message="Loading platform..." />
+} @else if (configuration().error) {
+  <app-error-state title="Couldn't load this platform" [message]="configuration().error!" (retry)="load()" />
+} @else if (configuration().data) {
+  <div class="platform-detail">
+    <a class="platform-detail__back" routerLink="/platforms">&larr; All Platforms</a>
+
+    @if (configuration().data!.layout.search) {
+      <div class="platform-detail__search">
+        <app-search placeholder="Search {{ configuration().data!.name }}..." (queryChange)="searchQuery.set($event)" />
+        @if (searchQuery()) {
+          <p class="platform-detail__search-hint">
+            Showing results for "{{ searchQuery() }}" &mdash; global search API lands in a later phase.
+          </p>
+        }
+      </div>
+    }
+
+    <div class="platform-detail__body" [class.platform-detail__body--with-sidebar]="configuration().data!.layout.sidebar">
+      @if (configuration().data!.layout.sidebar) {
+        <aside class="platform-detail__sidebar">
+          <app-sidebar [links]="sidebarLinks" />
+        </aside>
+      }
+
+      <main class="platform-detail__main">
+        <app-section-renderer [platform]="configuration().data!" />
+      </main>
+    </div>
+
+    <p class="platform-detail__note">
+      Rendered live by the Platform Engine from this platform's configuration &mdash; the same
+      Section Renderer and component library power all 17 platforms.
+    </p>
+  </div>
+} @else {
+  <app-empty-state title="Platform not found" message="This platform doesn't exist." />
+}

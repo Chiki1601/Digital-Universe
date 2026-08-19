@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ECmmn800csg=",
+  "success": true,
+  "projectFilePath": "D:\\Angular practice to crack interview\\DigitalUniverse\\server\\server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pooja\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.10\\microsoft.aspnetcore.openapi.10.0.10.nupkg.sha512",
+    "C:\\Users\\pooja\\.nuget\\packages\\microsoft.openapi\\2.11.0\\microsoft.openapi.2.11.0.nupkg.sha512"
+  ],
+  "logs": []
+}
