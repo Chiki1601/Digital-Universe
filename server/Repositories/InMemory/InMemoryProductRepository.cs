@@ -5,8 +5,8 @@ using server.Repositories.Interfaces;
 namespace server.Repositories.InMemory;
 
 /// <summary>
-/// Seeds and serves original, fictional products from an in-memory collection.
-/// No database is used anywhere in this project - state resets on restart.
+/// Seeds and serves demo marketplace products from an in-memory collection.
+/// Prices, stock, and review counts are illustrative and are not live data.
 /// </summary>
 public sealed class InMemoryProductRepository : IProductRepository
 {
@@ -33,7 +33,36 @@ public sealed class InMemoryProductRepository : IProductRepository
     {
         var index = 0;
 
-        // ShopSphere - general marketplace
+        // Real-world reference catalog inspired by common Amazon and Flipkart
+        // listings. Product images, checkout, stock, and seller data are demo-only.
+        yield return Build(ref index, "shopsphere", "electronics", "Apple iPhone 15",
+            "Apple smartphone with a 6.1-inch display, dual camera system, and USB-C connectivity.", 69999m, 79900m, 4.5, 12480, true);
+        yield return Build(ref index, "shopsphere", "electronics", "Samsung Galaxy S24",
+            "Samsung flagship smartphone with a bright display, advanced camera features, and all-day battery.", 74999m, 84999m, 4.4, 8650, true);
+        yield return Build(ref index, "shopsphere", "electronics", "Sony WH-1000XM5",
+            "Wireless over-ear headphones with active noise cancellation and high-resolution audio support.", 27990m, 34990m, 4.6, 4380, true);
+        yield return Build(ref index, "shopsphere", "computers", "Apple MacBook Air M3",
+            "Lightweight laptop powered by Apple silicon with a sharp display and long battery life.", 114990m, 124990m, 4.7, 1890, true);
+        yield return Build(ref index, "shopsphere", "smart-home", "Amazon Echo Dot 5th Gen",
+            "Compact smart speaker for music, timers, questions, and compatible smart-home controls.", 4499m, 5499m, 4.3, 9150, true);
+        yield return Build(ref index, "shopsphere", "books", "Kindle Paperwhite",
+            "Waterproof e-reader with a glare-free display and adjustable warm light.", 13999m, 16999m, 4.5, 5320, true);
+
+        yield return Build(ref index, "fashionhub", "footwear", "Nike Air Max 90",
+            "Classic Nike lifestyle sneaker with visible Air cushioning and a durable rubber outsole.", 10795m, 12795m, 4.4, 2740, true);
+        yield return Build(ref index, "fashionhub", "footwear", "Adidas Ultraboost 23",
+            "Performance running shoe with responsive cushioning and a supportive knit upper.", 12999m, 17999m, 4.5, 1980, true);
+        yield return Build(ref index, "fashionhub", "accessories", "Ray-Ban Aviator Classic",
+            "Iconic metal-frame sunglasses with classic teardrop lenses and UV protection.", 9590m, 11990m, 4.6, 1120, true);
+
+        yield return Build(ref index, "marketzone", "electronics", "Logitech MX Master 3S",
+            "Wireless ergonomic mouse with a precise sensor, quiet clicks, and multi-device support.", 7995m, 9995m, 4.6, 3210, true);
+        yield return Build(ref index, "marketzone", "home-appliances", "Dyson V15 Detect",
+            "Cordless vacuum with intelligent cleaning modes and dust detection technology.", 49900m, 59900m, 4.4, 860, true);
+        yield return Build(ref index, "marketzone", "home-living", "LEGO Classic Creative Brick Box",
+            "A reusable brick set with colorful pieces for open-ended building and creative play.", 2499m, 2999m, 4.7, 6450, true);
+
+        // Additional original demo products
         yield return Build(ref index, "shopsphere", "electronics", "Pulsewave Earbuds X2",
             "Wireless earbuds tuned for balanced sound with a 28-hour charging case.", 59.99m, 79.99m, 4.5, 212, true);
         yield return Build(ref index, "shopsphere", "electronics", "Lumen Desk Lamp Pro",

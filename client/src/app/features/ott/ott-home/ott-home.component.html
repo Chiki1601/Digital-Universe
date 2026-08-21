@@ -10,6 +10,25 @@
       [description]="platform().data!.description"
     />
 
+      @if (featuredTitle(); as featured) {
+        <section class="ott-home__featured" aria-label="Featured title">
+          <div class="ott-home__featured-art" [class]="'accent-' + featured.accentIndex" aria-hidden="true">
+            <span class="ott-home__featured-mark">{{ featured.title.charAt(0) }}</span>
+            <span class="ott-home__featured-label">{{ featured.type }} original</span>
+          </div>
+          <div class="ott-home__featured-copy">
+            <p class="ott-home__eyebrow">Featured tonight</p>
+            <h2>{{ featured.title }}</h2>
+            <div class="ott-home__featured-meta">
+              <span>{{ featured.genres.join(' / ') }}</span>
+              <span>{{ featured.rating.toFixed(1) }} / 5</span>
+            </div>
+            <p>Discover a new story from {{ platform().data!.name }}. Your next watch is ready when you are.</p>
+            <a class="ott-home__primary-action" [routerLink]="['title', featured.id]">View title <span aria-hidden="true">&#8594;</span></a>
+          </div>
+        </section>
+      }
+
     @if (platform().data!.layout.search) {
       <div class="ott-home__toolbar">
         <app-search placeholder="Search {{ platform().data!.name }}..." (queryChange)="searchQuery.set($event)" />

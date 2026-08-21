@@ -7,10 +7,10 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="not-found">
-      <p class="not-found__code">404</p>
-      <h1>Lost in the universe.</h1>
-      <p>The page you're looking for doesn't exist.</p>
-      <a routerLink="/">Back to Home</a>
+      <p class="not-found__code">Explore</p>
+      <h1>Let's find your next universe.</h1>
+      <p>That destination is not available yet, but the main collection is ready to explore.</p>
+      <a routerLink="/platforms">Browse Platforms</a>
     </div>
   `,
   styles: `

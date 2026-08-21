@@ -5,7 +5,7 @@ using server.Repositories.Interfaces;
 namespace server.Repositories.InMemory;
 
 /// <summary>
-/// Seeds and serves fictional platform definitions from an in-memory collection.
+/// Seeds and serves platform definitions from an in-memory collection.
 /// No database is used anywhere in this project - state resets on restart.
 /// </summary>
 public sealed class InMemoryPlatformRepository : IPlatformRepository
@@ -28,103 +28,103 @@ public sealed class InMemoryPlatformRepository : IPlatformRepository
     {
         var defaultLayout = new LayoutConfiguration { Hero = true, Sidebar = false, Search = true };
 
-        yield return Build("cineverse", "CineVerse", PlatformCategory.Ott, "cinematic",
-            "Every story, in one universe.",
-            "A cinematic streaming experience for original films and series.",
+        yield return Build("cineverse", "Netflix", PlatformCategory.Ott, "cinematic",
+            "Stories for every mood.",
+            "A cinematic streaming experience for movies, series, and documentaries.",
             defaultLayout,
             HeroCarouselSections("Trending Now", "Popular Movies", "New Releases"));
 
-        yield return Build("streambox", "StreamBox", PlatformCategory.Ott, "cinematic",
+        yield return Build("streambox", "Amazon Prime Video", PlatformCategory.Ott, "cinematic",
             "Stream without limits.",
-            "An on-demand video platform built around binge-worthy originals.",
+            "An on-demand video platform built around movies, series, and originals.",
             defaultLayout,
             HeroCarouselSections("Continue Watching", "Top Picks For You", "Award-Winning Series"));
 
-        yield return Build("seriesworld", "SeriesWorld", PlatformCategory.Ott, "cinematic",
-            "Series-first streaming.",
-            "A platform dedicated entirely to serialized storytelling.",
+        yield return Build("seriesworld", "Disney+ Hotstar", PlatformCategory.Ott, "cinematic",
+            "Your world of entertainment.",
+            "A streaming platform for series, sports, movies, and family entertainment.",
             defaultLayout,
             HeroCarouselSections("Binge This Week", "Fan Favorites", "Coming Soon"));
 
-        yield return Build("soundwave", "SoundWave", PlatformCategory.Music, "music",
-            "Feel every frequency.",
-            "A music streaming experience built for discovery.",
+        yield return Build("soundwave", "Spotify", PlatformCategory.Music, "music",
+            "Music for every moment.",
+            "A music streaming experience built for discovery, playlists, and podcasts.",
             defaultLayout,
             HeroCarouselSections("Made For You", "Top Charts", "New Releases"));
 
-        yield return Build("tunespace", "TuneSpace", PlatformCategory.Music, "music",
+        yield return Build("tunespace", "YouTube Music", PlatformCategory.Music, "music",
             "Your sound, your space.",
-            "A social-first music platform connecting artists and listeners.",
+            "A music platform connecting official tracks, live performances, and artists.",
             defaultLayout,
             HeroCarouselSections("Recently Played", "Trending Artists", "Playlists For You"));
 
-        yield return Build("socialhub", "SocialHub", PlatformCategory.Social, "social",
-            "Connect. Share. Belong.",
-            "A community feed platform for sharing moments that matter.",
+        yield return Build("socialhub", "Instagram", PlatformCategory.Social, "social",
+            "Capture and share the moment.",
+            "A visual community for photos, short videos, stories, and conversations.",
             new LayoutConfiguration { Hero = false, Sidebar = true, Search = true },
             FeedSections("Stories", "Feed", "Suggested For You"));
 
-        yield return Build("connectly", "Connectly", PlatformCategory.Social, "social",
-            "Every connection counts.",
-            "A messaging-forward social platform focused on close circles.",
+        yield return Build("connectly", "Facebook", PlatformCategory.Social, "social",
+            "Connect with the people who matter.",
+            "A social network for communities, groups, events, and everyday updates.",
             new LayoutConfiguration { Hero = false, Sidebar = true, Search = true },
             FeedSections("Stories", "Feed", "Nearby Friends"));
 
-        yield return Build("pronetwork", "ProNetwork", PlatformCategory.Social, "social",
-            "Where communities grow.",
-            "A group-centric social platform for shared interests.",
+        yield return Build("pronetwork", "YouTube", PlatformCategory.Social, "social",
+            "Share what inspires you.",
+            "A video community for creators, channels, subscriptions, and live streams.",
             new LayoutConfiguration { Hero = false, Sidebar = true, Search = true },
             FeedSections("Your Groups", "Feed", "Discover Communities"));
 
-        yield return Build("shopsphere", "ShopSphere", PlatformCategory.Shopping, "commerce",
+        yield return Build("shopsphere", "Amazon Marketplace", PlatformCategory.Shopping, "commerce",
             "Shop the sphere.",
             "A general marketplace with curated collections and deals.",
             defaultLayout,
             CommerceSections("Deals Of The Day", "Trending Products", "Recommended For You"));
 
-        yield return Build("fashionhub", "FashionHub", PlatformCategory.Shopping, "commerce",
+        yield return Build("fashionhub", "Flipkart Fashion", PlatformCategory.Shopping, "commerce",
             "Style, curated.",
             "A fashion-first shopping destination with seasonal drops.",
             defaultLayout,
             CommerceSections("New Arrivals", "Editor's Picks", "Trending Styles"));
 
-        yield return Build("marketzone", "MarketZone", PlatformCategory.Shopping, "commerce",
+        yield return Build("marketzone", "Myntra Marketplace", PlatformCategory.Shopping, "commerce",
             "Everything, nearby.",
             "A marketplace connecting local sellers with shoppers.",
             defaultLayout,
             CommerceSections("Flash Deals", "Popular Nearby", "Top Rated Sellers"));
 
-        yield return Build("newsspace", "NewsSpace", PlatformCategory.News, "editorial",
+        yield return Build("newsspace", "Google News", PlatformCategory.News, "editorial",
             "Stay informed, stay ahead.",
             "A breaking-news platform with in-depth original reporting.",
             new LayoutConfiguration { Hero = true, Sidebar = true, Search = true },
             NewsSections("Breaking News", "Top Stories", "Trending Topics"));
 
-        yield return Build("dailysphere", "DailySphere", PlatformCategory.News, "editorial",
+        yield return Build("dailysphere", "The Daily News", PlatformCategory.News, "editorial",
             "Your daily perspective.",
             "A curated daily digest of original long-form journalism.",
             new LayoutConfiguration { Hero = true, Sidebar = true, Search = true },
             NewsSections("Today's Highlights", "Deep Dives", "Editor's Picks"));
 
-        yield return Build("creatorspace", "CreatorSpace", PlatformCategory.Creator, "creator",
+        yield return Build("creatorspace", "YouTube Studio", PlatformCategory.Creator, "creator",
             "Create without limits.",
             "A platform for creators to publish, grow, and engage an audience.",
             new LayoutConfiguration { Hero = true, Sidebar = false, Search = true },
             CreatorSections("Featured Creators", "Trending Content", "Rising Stars"));
 
-        yield return Build("contenthub", "ContentHub", PlatformCategory.Creator, "creator",
+        yield return Build("contenthub", "Substack", PlatformCategory.Creator, "creator",
             "Your content, amplified.",
             "A multi-format publishing platform for independent creators.",
             new LayoutConfiguration { Hero = true, Sidebar = false, Search = true },
             CreatorSections("Editor's Picks", "Trending Now", "New Creators"));
 
-        yield return Build("careerconnect", "CareerConnect", PlatformCategory.Professional, "professional",
+        yield return Build("careerconnect", "LinkedIn", PlatformCategory.Professional, "professional",
             "Build your career story.",
             "A professional networking platform for careers and connections.",
             new LayoutConfiguration { Hero = true, Sidebar = true, Search = true },
             ProfessionalSections("Your Feed", "Jobs For You", "People You May Know"));
 
-        yield return Build("worksphere", "WorkSphere", PlatformCategory.Professional, "professional",
+        yield return Build("worksphere", "Indeed", PlatformCategory.Professional, "professional",
             "Work, connected.",
             "A professional platform focused on hiring and team building.",
             new LayoutConfiguration { Hero = true, Sidebar = true, Search = true },

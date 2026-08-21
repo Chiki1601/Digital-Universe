@@ -20,6 +20,8 @@
         <span class="movie-detail__type">{{ content().data!.type }}</span>
         <h1 class="movie-detail__title">{{ content().data!.title }}</h1>
 
+        <p class="movie-detail__kicker">A {{ content().data!.platformId }} original</p>
+
         <div class="movie-detail__meta">
           <app-rating [value]="content().data!.rating" />
           <span>{{ content().data!.releaseYear }}</span>
@@ -32,6 +34,7 @@
           }
         </div>
 
+        <h2 class="movie-detail__section-title">About this title</h2>
         <p class="movie-detail__synopsis">{{ content().data!.synopsis }}</p>
 
         <button type="button" class="movie-detail__watchlist-btn" (click)="toggleWatchlist()">

@@ -31,3 +31,4 @@ D:\Angular practice to crack interview\DigitalUniverse\server\obj\Debug\net10.0\
 D:\Angular practice to crack interview\DigitalUniverse\server\obj\Debug\net10.0\server.pdb
 D:\Angular practice to crack interview\DigitalUniverse\server\obj\Debug\net10.0\server.genruntimeconfig.cache
 D:\Angular practice to crack interview\DigitalUniverse\server\obj\Debug\net10.0\ref\server.dll
+D:\Angular practice to crack interview\DigitalUniverse\server\obj\Debug\net10.0\server.sourcelink.json
