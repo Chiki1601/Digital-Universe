@@ -3,5 +3,6 @@
     <span class="media-card__initial">{{ item().title.charAt(0) }}</span>
   </div>
   <h3 class="media-card__title">{{ item().title }}</h3>
+  <p class="media-card__subtitle">{{ item().subtitle }}</p>
   <app-rating [value]="item().rating" />
 </article>

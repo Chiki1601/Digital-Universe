@@ -1,7 +1,96 @@
+@use '../../../platform-engine/styles/accent-gradients' as accents;
+
 .ott-home {
   max-width: 1180px;
   margin: 0 auto;
   padding: 2rem 2rem 5rem;
+
+  &__featured {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.7fr) 1.3fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.25rem;
+    margin: -0.75rem 0 2.5rem;
+    border: var(--card-border);
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+  }
+
+  &__featured-art {
+    position: relative;
+    min-height: 15rem;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: calc(var(--border-radius) - 2px);
+    @include accents.accent-classes;
+  }
+
+  &__featured-mark {
+    color: rgb(255 255 255 / 0.9);
+    font-size: clamp(4rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  &__featured-label {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.8rem;
+    color: rgb(255 255 255 / 0.75);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  &__featured-copy {
+    max-width: 34rem;
+
+    h2 {
+      margin: 0.35rem 0 0.75rem;
+      font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.7rem);
+      letter-spacing: -0.03em;
+    }
+
+    p:not(.ott-home__eyebrow) {
+      max-width: 48ch;
+      margin: 0 0 1.2rem;
+      color: var(--muted-text-color);
+      line-height: 1.6;
+    }
+  }
+
+  &__eyebrow {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__featured-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    color: var(--muted-text-color);
+    font-size: 0.82rem;
+    margin-bottom: 0.9rem;
+  }
+
+  &__primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
 
   &__toolbar {
     display: flex;
@@ -13,6 +102,17 @@
     app-search {
       max-width: 20rem;
       flex: 1 1 16rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    &__featured {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    &__featured-art {
+      min-height: 11rem;
     }
   }
 }

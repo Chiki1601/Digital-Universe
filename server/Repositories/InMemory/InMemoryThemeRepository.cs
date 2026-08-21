@@ -30,8 +30,8 @@ public sealed class InMemoryThemeRepository : IThemeRepository
         {
             Id = "cinematic",
             Name = "Cinematic",
-            PrimaryColor = "#e63946",
-            SecondaryColor = "#8338ec",
+            PrimaryColor = "#e50914",
+            SecondaryColor = "#b20710",
             BackgroundColor = "#0b0d14",
             SurfaceColor = "#15181f",
             TextColor = "#f5f5f7",
@@ -45,8 +45,8 @@ public sealed class InMemoryThemeRepository : IThemeRepository
         {
             Id = "music",
             Name = "Music",
-            PrimaryColor = "#1ed760",
-            SecondaryColor = "#ff2d78",
+            PrimaryColor = "#1db954",
+            SecondaryColor = "#ff0000",
             BackgroundColor = "#0a0a0c",
             SurfaceColor = "#181818",
             TextColor = "#ffffff",
@@ -60,8 +60,8 @@ public sealed class InMemoryThemeRepository : IThemeRepository
         {
             Id = "social",
             Name = "Social",
-            PrimaryColor = "#4361ee",
-            SecondaryColor = "#7209b7",
+            PrimaryColor = "#e1306c",
+            SecondaryColor = "#f77737",
             BackgroundColor = "#f7f8fc",
             SurfaceColor = "#ffffff",
             TextColor = "#1a1c2b",
@@ -75,8 +75,8 @@ public sealed class InMemoryThemeRepository : IThemeRepository
         {
             Id = "commerce",
             Name = "Commerce",
-            PrimaryColor = "#ff6b35",
-            SecondaryColor = "#2a9d8f",
+            PrimaryColor = "#ff9900",
+            SecondaryColor = "#2874f0",
             BackgroundColor = "#fafafa",
             SurfaceColor = "#ffffff",
             TextColor = "#1c1c1c",

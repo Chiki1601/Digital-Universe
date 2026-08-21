@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PlatformService } from '../../../core/services/platform.service';
 import { ThemeService } from '../../../core/services/theme.service';
 import { RequestState, initialRequestState } from '../../../core/models';
@@ -20,6 +20,7 @@ import { MovieRowComponent } from '../components/movie-row/movie-row.component';
 @Component({
   selector: 'app-ott-home',
   imports: [
+    RouterLink,
     LoadingStateComponent,
     ErrorStateComponent,
     EmptyStateComponent,
@@ -70,6 +71,7 @@ export class OttHomeComponent {
 
   protected readonly trending = computed(() => this.filteredContent().filter((item) => item.isTrending));
   protected readonly popular = computed(() => this.filteredContent().filter((item) => item.isPopular));
+  protected readonly featuredTitle = computed(() => this.trending()[0] ?? this.filteredContent()[0] ?? null);
 
   protected readonly continueWatchingItems = computed(() => {
     const progress = this.continueWatchingService.progress();

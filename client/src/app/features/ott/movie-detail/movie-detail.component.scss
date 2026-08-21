@@ -40,6 +40,13 @@
     letter-spacing: -0.02em;
   }
 
+  &__kicker {
+    margin: -0.3rem 0 1.15rem;
+    color: var(--muted-text-color);
+    font-size: 0.8rem;
+    text-transform: capitalize;
+  }
+
   &__meta {
     display: flex;
     align-items: center;
@@ -69,6 +76,13 @@
     color: var(--muted-text-color);
     line-height: 1.65;
     margin: 0 0 1.5rem;
+  }
+
+  &__section-title {
+    margin: 1.5rem 0 0.55rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   &__watchlist-btn {

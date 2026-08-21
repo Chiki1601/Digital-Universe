@@ -48,13 +48,13 @@ export class HomeComponent {
   protected readonly themes = signal<RequestState<ThemeConfig[]>>(initialRequestState());
 
   protected readonly categories: PlatformCategoryTile[] = [
-    { id: 'ott', label: 'OTT / Streaming', icon: '🎬', description: 'Cinematic video-on-demand experiences.', examples: 'CineVerse, StreamBox, SeriesWorld' },
-    { id: 'music', label: 'Music', icon: '🎧', description: 'Audio-first discovery and playback.', examples: 'SoundWave, TuneSpace' },
-    { id: 'social', label: 'Social Media', icon: '💬', description: 'Feeds, stories, and connection.', examples: 'SocialHub, Connectly, ProNetwork' },
-    { id: 'shopping', label: 'Shopping', icon: '🛍️', description: 'Product discovery and checkout.', examples: 'ShopSphere, FashionHub, MarketZone' },
-    { id: 'news', label: 'News / Content', icon: '📰', description: 'Editorial storytelling at scale.', examples: 'NewsSpace, DailySphere' },
-    { id: 'creator', label: 'Creator Platforms', icon: '🎨', description: 'Publishing tools for creators.', examples: 'CreatorSpace, ContentHub' },
-    { id: 'professional', label: 'Professional Networking', icon: '💼', description: 'Careers, jobs, and connections.', examples: 'CareerConnect, WorkSphere' }
+    { id: 'ott', label: 'OTT / Streaming', icon: '🎬', description: 'Movies, series, documentaries, and live entertainment.', examples: 'Netflix, Amazon Prime Video, Disney+ Hotstar' },
+    { id: 'music', label: 'Music', icon: '🎧', description: 'Songs, artists, playlists, and podcasts.', examples: 'Spotify, YouTube Music' },
+    { id: 'social', label: 'Social Media', icon: '💬', description: 'Feeds, stories, videos, groups, and connections.', examples: 'Instagram, Facebook, YouTube' },
+    { id: 'shopping', label: 'Shopping', icon: '🛍️', description: 'Product discovery, deals, and checkout.', examples: 'Amazon, Flipkart, Myntra' },
+    { id: 'news', label: 'News / Content', icon: '📰', description: 'Headlines, explainers, interviews, and analysis.', examples: 'Google News, Daily News' },
+    { id: 'creator', label: 'Creator Platforms', icon: '🎨', description: 'Publishing, audience growth, and monetization.', examples: 'YouTube Studio, Substack' },
+    { id: 'professional', label: 'Professional Networking', icon: '💼', description: 'Jobs, skills, companies, and career connections.', examples: 'LinkedIn, Indeed' }
   ];
 
   protected readonly architecture: ArchitectureStep[] = [
